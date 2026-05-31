@@ -5,12 +5,12 @@ using namespace std;
 class Wood
 {
 public:
-    float calc(float l, float b, float h)   // CFT
+    float calc(float l, float b, float h)
     {
         return l * b * h;
     }
 
-    float calc(float cft, float rate)       // Price
+    float calc(float cft, float rate)
     {
         return cft * rate;
     }
@@ -19,30 +19,42 @@ public:
 int main()
 {
     Wood w;
-    int ch;
-    float l, b, h, cft, rate;
+    float l, b, h, cft = 0, rate, price;
+    int ch = 0;
 
-    cout << "1. Calculate CFT\n";
-    cout << "2. Calculate Price\n";
-    cout << "Enter choice: ";
-    cin >> ch;
-
-    switch(ch)
+    while(ch != 3)
     {
-        case 1:
-            cout << "Enter Length, Breadth and Height: ";
-            cin >> l >> b >> h;
-            cout << "CFT = " << w.calc(l, b, h);
-            break;
+        cout << "\n1. Calculate CFT";
+        cout << "\n2. Calculate Price";
+        cout << "\n3. Exit";
+        cout << "\nEnter Choice: ";
+        cin >> ch;
 
-        case 2:
-            cout << "Enter CFT and Rate per CFT: ";
-            cin >> cft >> rate;
-            cout << "Price = " << w.calc(cft, rate);
-            break;
+        switch(ch)
+        {
+            case 1:
+                cout << "Enter Length, Breadth and Height: ";
+                cin >> l >> b >> h;
 
-        default:
-            cout << "Invalid Choice";
+                cft = w.calc(l, b, h);
+                cout << "CFT = " << cft << endl;
+                break;
+
+            case 2:
+                cout << "Enter Rate per CFT: ";
+                cin >> rate;
+
+                price = w.calc(cft, rate);
+                cout << "Price = " << price << endl;
+                break;
+
+            case 3:
+                cout << "Exiting...";
+                break;
+
+            default:
+                cout << "Invalid Choice";
+        }
     }
 
     return 0;
