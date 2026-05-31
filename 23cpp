@@ -1,0 +1,61 @@
+//23.Write a programs in c++ to input the two terms and print the gcd of that term using the friend functions of two different classes.
+#include <iostream>
+using namespace std;
+
+class B;  // Forward declaration
+
+class A
+{
+    int a;
+
+public:
+    void getA()
+    {
+        cout << "Enter first number: ";
+        cin >> a;
+    }
+
+    friend int gcd(A, B);
+};
+
+class B
+{
+    int b;
+
+public:
+    void getB()
+    {
+        cout << "Enter second number: ";
+        cin >> b;
+    }
+
+    friend int gcd(A, B);
+};
+
+int gcd(A x, B y)
+{
+    int a = x.a;
+    int b = y.b;
+
+    while (b != 0)
+    {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+
+    return a;
+}
+
+int main()
+{
+    A obj1;
+    B obj2;
+
+    obj1.getA();
+    obj2.getB();
+
+    cout << "GCD = " << gcd(obj1, obj2);
+
+    return 0;
+}
